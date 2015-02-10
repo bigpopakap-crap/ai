@@ -1,0 +1,77 @@
+GAME representation
+/*
+	Written by 3rd party dev, describes the Game
+*/
+function Game() {
+	int getMinNumPlayers(); //min number of players per game
+	int getMaxNumPlayers(); //max number of players per game
+
+	GameState init(String[] playerIds); //initialize a game for that many players
+}
+
+/*
+	Written by 3rd party dev, describes the current game state
+*/
+function GameState(String playerIds[]) {
+	//stuf for server
+	String getNextPlayerId() //the next/current player to play
+	JSON toJson()
+	
+	//stuff for client
+	static GameState fromJson(JSON state)
+	void draw($body); //TODO how to make secure? iframe?
+	GameMove[] getAvailableMoves()
+	GameState apply(GameMove move)
+}
+
+/*
+	Written by 3rd party dev, describes a move. Can really be anything
+*/
+function GameMove() {
+	JSON toJson();
+	static GameMove fromJson(JSON move)
+}
+
+/*
+	Our object that wraps the game state on the server side
+*/
+function GameStateServerWrapper(GameState g) {
+	//TODO
+}
+
+/*
+	Our object that wraps the game state on the client side
+*/
+function GameStateClientWrapper(GameState g) {
+	//TODO
+}
+
+/*
+	Defines the tournament’s rules, length, scoring, submission structure, etc
+*/
+TOURNAMENT
+	- id, name, date started, hosted by
+	- end date
+	- min/max number of contestants
+	- enrollment end date
+	- are re-submissions allowed? up to what date?
+	- which game(s) is being played in this tourney?
+	- any perks for certain ranks? payouts?
+	- how is this tourney scored?
+	- is it restricted to certain skill levels only?
+	- public/private/invite-only admission?
+	- time limit for games?
+	- time limit for each move? are re-pings allowed?
+	- etc.
+
+SERVER-CLIENT model
+- Game developer submits a game
+- Tests have to be run on that game to ensure quality
+- Someone starts a tournament, submitted to server
+- SERVER handles getting entrances for the tourney
+- SERVER matches users to play a game (in this model, users must be online)
+- SERVER sends client a GameState and timeout time
+- CLIENT sends a move
+- SERVER accepts the move, applies it to the board and repeats until the game is done
+
+GAME DEVELOPER and AI DEVELOPERS need tools to develop/test/debug
