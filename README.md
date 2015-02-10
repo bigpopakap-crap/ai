@@ -5,3 +5,6 @@
 
 ##Code mirror JS editor
 - http://codemirror.net/index.html
+
+##Sandboxing iframe
+- http://www.w3schools.com/tags/att_iframe_sandbox.asp (probably need sandbox="allow-scripts"
